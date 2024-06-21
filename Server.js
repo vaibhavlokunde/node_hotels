@@ -3,6 +3,7 @@ const app=express()
 const db=require('./db')
 const bodyParser=require('body-parser')
 app.use(bodyParser.json())
+require('dotenv').config();
 app.get('/',(req,res)=>{
     res.send("welcome to our page")
 })
@@ -12,6 +13,8 @@ app.use('/menu',menuRoutes);
 const personRoutes=require('./routess/personRoutes')
 app.use('/person',personRoutes);
 
-app.listen(3001,()=>{
-    console.log("Server is not running")
+const PORT=process.env.PORT || 3001;
+
+app.listen(PORT,()=>{
+    console.log("Server is now running")
 })
